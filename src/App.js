@@ -40,7 +40,8 @@ function App() {
   // fetching notices and putting them in a context value 
   const getProgrammes = async function () {
     await axios.get("/program/getAll").then(res => {
-      setAllProgrammes(res.data.programs)
+      setAllProgrammes(res.data.programs);
+      console.log(res.data)
     });
   }
 
@@ -53,6 +54,7 @@ function App() {
   const getImages = async function () {
     await axios.get("/image/getAllImages").then(res => {
       setAllImages(res.data.images)
+      
     });
   }
 
