@@ -20,6 +20,8 @@ import axios from "axios";
 
 function App() {
 
+  const [conditionalRenderingRoutes, setConditionalRenderingRoutes] = useState(undefined);
+
 // NOTICES STARTING-------------------------------------------------------------------------------------
   // state for storing value of notices
   const [allNotices, setAllNotices] = useState("");
@@ -58,9 +60,8 @@ function App() {
 const [user, setUser] = useState();
 // ENDING making a context for containing current user after login and vlaue will be set in login component
 
-const [conditionalRenderingRoutes, setConditionalRenderingRoutes] = useState();
 const fetchUserById = async function() {
-  if (localStorage.getItem("user") !== undefined) {
+  if (localStorage.getItem("user")) {
     await axios.get(`/auth/getUser/${JSON.parse(localStorage.getItem("user"))._id}`)
     .then(res => setConditionalRenderingRoutes(res));
   } else {
