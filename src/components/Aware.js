@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 const Aware = function() {
     const [allNotices, setAllNotices] = useState("");
-    const [awareProgrammes, setAwareProgrammes] = useState("");
+    const [awareProgrammes, setAwareProgrammes] = useState([]);
     const [curUser, setCurUser] = useState();
     // fetch function to get all the notices
     const getNotices = async function() {
@@ -19,13 +19,11 @@ const Aware = function() {
 
     // use effect
     React.useEffect( ()=> {
+        setCurUser(JSON.parse(localStorage.getItem("user")));
         getAwareProgrmmes();
         getNotices();
     }, []);
-    
-    React.useEffect(() => {
-        setCurUser(JSON.parse(localStorage.getItem("user")));
-    },[]);
+    console.log(awareProgrammes);
 
     return(
         <>
@@ -73,7 +71,7 @@ const Aware = function() {
                         <div className="container py-2 mx-auto">
                             <div className="-my-8 divide-y-2 divide-gray-100">
                             {/* mapping all the programmes fetching from database */}
-                                {Array.from(awareProgrammes).map((program, index) => {
+                                {Array.from(awareProgrammes)?.map((program, index) => {
                                     return <div key={index} className="py-8 flex flex-wrap md:flex-nowrap">
                                         <div className="md:w-64 w-full md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                                             <span className="mt-1 mb-1 text-gray-500 text-sm">{program.updatedAt.slice(0, 10)}</span>
