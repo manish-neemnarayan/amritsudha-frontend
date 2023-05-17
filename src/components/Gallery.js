@@ -14,10 +14,10 @@ const Gallery = function() {
               <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom.</p>
             </div>
             <div className="flex justify-center items-center flex-wrap -m-4 md:h-[90vh]">
-              {Array.from(images).map(photo => {
+              {Array.from(images).map((photo, index) => {
                 return (
                   <>
-                    <div className="lg:w-1/2 sm:w-1/2 p-4">
+                    <div key={index} className="lg:w-1/2 sm:w-1/2 p-4">
                       <div className="flex group relative">
                         <img alt="gallery" className="inset-0 w-full h-full object-cover object-center" src={photo.avatar} />
                         <div className="bg-white opacity-90 z-50 hidden group-hover:grid absolute top-0 left-0 w-full h-full place-content-center ">

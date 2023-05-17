@@ -56,8 +56,8 @@ const Aware = function() {
                     pb-8
                     underline
                 ">Awareness Programmes</h2>
-                {
-                    (curUser && (curUser.role === "MEMBER" || curUser.role === "ADMIN")) ? 
+                
+                    {/* (curUser && (curUser.role === "MEMBER" || curUser.role === "ADMIN")) ?  */}
                     <ul className="
                     overflow-y-scroll
                     h-52
@@ -70,7 +70,7 @@ const Aware = function() {
                         <section className="text-gray-600 body-font overflow-hidden">
                         <div className="container py-2 mx-auto">
                             <div className="-my-8 divide-y-2 divide-gray-100">
-                            {/* mapping all the notices fetching from database */}
+                            {/* mapping all the programmes fetching from database */}
                                 {Array.from(awareProgrammes).map((program, index) => {
                                     return <div key={index} className="py-8 flex flex-wrap md:flex-nowrap">
                                         <div className="md:w-64 w-full md:mb-0 mb-6 flex-shrink-0 flex flex-col">
@@ -88,38 +88,8 @@ const Aware = function() {
                         </section>
                     </li>
                 </ul> 
-                :
-                <ul className="
-                    overflow-y-scroll
-                    h-[26rem]
-                    shadow-inner
-                    p-4
-                    bg-white
-                    rounded-xl
-                ">
-                     <li className="pb-4 text-m w-full font-semibold text-violet-700">
-                        <section className="text-gray-600 body-font overflow-hidden">
-                        <div className="container py-2 mx-auto">
-                            <div className="-my-8 divide-y-2 divide-gray-100">
-                            {/* mapping all the notices fetching from database */}
-                                {Array.from(awareProgrammes).map((program, index) => {
-                                    return <div key={index} className="py-8 flex flex-wrap md:flex-nowrap">
-                                        <div className="md:w-64 w-full md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                                            <span className="mt-1 mb-1 text-gray-500 text-sm">{program.updatedAt.slice(0, 10)}</span>
-                                        </div>
-                                        <div className="md:flex-grow">
-                                            <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">{program.title}</h2>
-                                            <p className="leading-relaxed">{program.message}</p>
-                                        </div>
-                                    </div>
-                                })}
-                            
-                            </div>
-                        </div>
-                        </section>
-                    </li>
-                </ul>
-                }
+
+                
             </div>
 
             {/* notices */}
@@ -183,9 +153,9 @@ const Aware = function() {
                 items-center
                 
             ">
-                <iframe className="md:w-2/3 md:m-auto md:p-2 rounded-xl p-2"  src="https://www.youtube.com/embed/SbPPJw_qHxM" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                <iframe className="md:w-2/3 md:m-auto md:p-2 rounded-xl p-2"  src="https://www.youtube.com/embed/SbPPJw_qHxM" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                <iframe className="md:w-2/3 md:m-auto md:p-2 rounded-xl p-2"  src="https://www.youtube.com/embed/SbPPJw_qHxM" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe className="md:w-2/3 md:m-auto md:p-2 rounded-xl p-2"  src="https://www.youtube.com/embed/SbPPJw_qHxM" title="YouTube video player"   allowFullScreen></iframe>
+                <iframe className="md:w-2/3 md:m-auto md:p-2 rounded-xl p-2"  src="https://www.youtube.com/embed/SbPPJw_qHxM" title="YouTube video player"  allowFullScreen></iframe>
+                <iframe className="md:w-2/3 md:m-auto md:p-2 rounded-xl p-2"  src="https://www.youtube.com/embed/SbPPJw_qHxM" title="YouTube video player"  allowFullScreen></iframe>
             </div>
         </div>
         </>
