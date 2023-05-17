@@ -13,7 +13,6 @@ const Aware = function() {
     // fetch function to get all the awareness programmes
     const getAwareProgrmmes = async function() {
         await axios.get("/program/getAll").then(res => setAwareProgrammes(res.data.programs));
-        console.log(awareProgrammes)
     }
 
     // use effect

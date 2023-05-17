@@ -20,7 +20,6 @@ const Header = function() {
         }
     }
     // current user getting from the browser
-    console.log(localStorage)
     useEffect(() => {
         if (localStorage.getItem("user") !== undefined ) {
             setCurUser(JSON.parse(localStorage.getItem("user")));
