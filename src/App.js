@@ -27,7 +27,9 @@ function App() {
   const [allNotices, setAllNotices] = useState("");
   // fetching notices and putting them in a context value 
   const getNotices = async function () {
-    await axios.get("/notice/getAll").then(res => setAllNotices(res.data.notices));
+    if (localStorage.getItem("user")) {
+      await axios.get("/notice/getAll").then(res => setAllNotices(res.data.notices));
+    }
   }
 
 // NOTICES ENDING-------------------------------------------------------------------------------------

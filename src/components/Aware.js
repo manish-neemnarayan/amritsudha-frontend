@@ -7,7 +7,9 @@ const Aware = function() {
     const [curUser, setCurUser] = useState();
     // fetch function to get all the notices
     const getNotices = async function() {
-        await axios.get("/notice/getAll").then(res => setAllNotices(res.data.notices));
+        if (localStorage.getItem("user")) {
+            await axios.get("/notice/getAll").then(res => setAllNotices(res.data.notices));
+        }
     }
 
     // fetch function to get all the awareness programmes
