@@ -9,6 +9,7 @@ function EditGallery() {
     let [addImageDescription, setAddImageDescription] = useState();
     const {images} = useContext(MyContext);
 
+
     // ADD IMAGE handler STARTING------------------------------------------------------------------------------------------
     const handleAddImage = async () => {
         let formData = new FormData();
@@ -66,7 +67,7 @@ function EditGallery() {
         {/* heading */}
         <h1 className="md:text-center sm:text-3xl text-2xl font-medium title-font my-4 p-2 text-gray-900">Edit <span className="text-orange-500" > Image </span></h1>
         {
-            (images) ? <p>Loading...</p> 
+            (!images) ? <p>Loading...</p> 
             :
         <div className="overflow-y-auto md:flex md:flex-row md:flex-wrap md:gap-4 md:justify-center md:h-[50vh] h-80 w-full p-2">
             {

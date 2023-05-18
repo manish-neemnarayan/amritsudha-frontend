@@ -90,7 +90,7 @@ React.useEffect(() => {
     setAllNotices(notices);
     setAllImages(images);
   })
-  .catch(err => console.error("error in app programmes fetching"));
+  .catch(err => console.error("error in app programmes fetching" + err));
 
 },[])
 
