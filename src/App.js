@@ -19,6 +19,8 @@ import SignUp from "./components/SignUp";
 import axios from "axios";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true); // it is for holding the component while data fetching is on the way
+
 
   const [conditionalRenderingRoutes, setConditionalRenderingRoutes] = useState(undefined);
 
@@ -28,7 +30,13 @@ function App() {
   // fetching notices and putting them in a context value 
   const getNotices = async function () {
     if (localStorage.getItem("user")) {
-      await axios.get("/notice/getAll").then(res => setAllNotices(res.data.notices));
+      await axios.get("/notice/getAll").then(res => {
+        setAllNotices(res.data.notices);
+        setIsLoading(false);
+      }).catch((error) => {
+        console.error('Error fetching data:', error);
+        setIsLoading(false);
+      })
     }
   }
 
@@ -41,7 +49,10 @@ function App() {
   const getProgrammes = async function () {
     await axios.get("/program/getAll").then(res => {
       setAllProgrammes(res.data.programs);
-      console.log(res.data)
+      setIsLoading(false);
+    }).catch((error) => {
+      console.error('Error fetching data:', error);
+      setIsLoading(false);
     });
   }
 
@@ -54,7 +65,10 @@ function App() {
   const getImages = async function () {
     await axios.get("/image/getAllImages").then(res => {
       setAllImages(res.data.images)
-      
+      setIsLoading(false);
+    }).catch((error) => {
+      console.error('Error fetching data:', error);
+      setIsLoading(false);
     });
   }
 
@@ -67,7 +81,13 @@ const [user, setUser] = useState();
 const fetchUserById = async function() {
   if (localStorage.getItem("user")) {
     await axios.get(`/auth/getUser/${JSON.parse(localStorage.getItem("user"))._id}`)
-    .then(res => setConditionalRenderingRoutes(res));
+    .then(res => {
+      setConditionalRenderingRoutes(res);
+      setIsLoading(false);
+    }).catch((error) => {
+      console.error('Error fetching data:', error);
+      setIsLoading(false);
+    });
   } else {
     setConditionalRenderingRoutes(undefined);
   }
@@ -88,6 +108,7 @@ React.useEffect(() => {
         notices : allNotices,
         programmes : allProgrammes,
         images: allImages,
+        isLoading,
         user,
         setUser
       }} >

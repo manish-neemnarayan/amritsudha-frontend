@@ -7,7 +7,7 @@ function EditGallery() {
     const [image, setImage] = useState(); // add image state
     let [addImageTitle, setAddImageTitle] = useState();
     let [addImageDescription, setAddImageDescription] = useState();
-    const {images} = useContext(MyContext);
+    const {images, isLoading} = useContext(MyContext);
 
     // ADD IMAGE handler STARTING------------------------------------------------------------------------------------------
     const handleAddImage = async () => {
@@ -67,6 +67,8 @@ function EditGallery() {
         <h1 className="md:text-center sm:text-3xl text-2xl font-medium title-font my-4 p-2 text-gray-900">Edit <span className="text-orange-500" > Image </span></h1>
         <div className="overflow-y-auto md:flex md:flex-row md:flex-wrap md:gap-4 md:justify-center md:h-[50vh] h-80 w-full p-2">
             {
+                (isLoading) ? <div>Loading...</div> 
+                :
                 Array.from(images).map((image, id) => {
                     return <div key={id} className="flex flex-col md:w-[30%] md:flex-col  justify-center  rounded-md bg-gray-400 mb-2 w-full gap-4" >
                     <img src={image.avatar} width={200} height={200} alt="" className="rounded-md w-full md:w-[100%]" />

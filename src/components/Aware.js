@@ -6,7 +6,7 @@ const Aware = function () {
     const [allNotices, setAllNotices] = useState("");
     // const [awareProgrammes, setAwareProgrammes] = useState([]);
     const [curUser, setCurUser] = useState();
-    const {programmes} = useContext(MyContext);
+    const {programmes, isLoading} = useContext(MyContext);
 
     console.log(programmes)
 
@@ -74,8 +74,13 @@ const Aware = function () {
                                 <section className="text-gray-600 body-font overflow-hidden">
                                     <div className="container py-2 mx-auto">
                                         <div className="-my-8 divide-y-2 divide-gray-100">
+                                           
+                                            
                                             {/* mapping all the programmes fetching from database */}
-                                            {Array.from(programmes)?.map((program, index) => {
+                                            {
+                                            (isLoading) ? <div>Loading...</div> 
+                                            :                                            
+                                            Array.from(programmes)?.map((program, index) => {
                                                 return <div key={index} className="py-8 flex flex-wrap md:flex-nowrap">
                                                     <div className="md:w-64 w-full md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                                                         <span className="mt-1 mb-1 text-gray-500 text-sm">{program.updatedAt.slice(0, 10)}</span>
@@ -85,7 +90,7 @@ const Aware = function () {
                                                         <p className="leading-relaxed">{program.message}</p>
                                                     </div>
                                                 </div>
-                                            })}
+                                            })} 
 
                                         </div>
                                     </div>

@@ -9,7 +9,7 @@ function EditUserPage() {
     let [_password, setPassword] = useState();
     let [_role, setRole] = useState();
 
-    const {notices, programmes} = useContext(MyContext); //notices fetch from context
+    const {notices, programmes, isLoading} = useContext(MyContext); //notices fetch from context
 
     // EDIT USER handling START-------------------------------------------------------------------------------------
     // able to edit it toggle the disabled attr on input element
@@ -173,7 +173,9 @@ function EditUserPage() {
                 <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Edit<span className="text-orange-500" > Notice </span></h1>
                 {/* container to contain all the notices */}
                 <div className='flex flex-wrap justify-center gap-y-2 gap-x-4 max-h-80 md:max-h-92 overflow-y-scroll'>
-                    {
+                    { 
+                        (isLoading) ? <div>Loading...</div> 
+                        :
                         Array.from(notices).map((notice, id) => {
                             return <div key={id} className='flex flex-wrap gap-4  bg-gray-200 rounded p-2 '>
                                     {/* another div for containing single notice info */}
@@ -228,6 +230,8 @@ function EditUserPage() {
                 <div className='flex flex-wrap justify-center gap-y-2 gap-x-4 max-h-80 md:max-h-92 overflow-y-scroll'>
                     {/* div for containing single programme */}
                     {
+                        (isLoading) ? <div>Loading...</div> 
+                        :
                         Array.from(programmes).map((program, id) => {
                             return <div key={id} className='flex flex-wrap gap-4  bg-gray-200 rounded p-2 '>
                                     {/* another div for containing single programme info */}
