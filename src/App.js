@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {Routes, Route} from "react-router-dom";
 import AboutAmritsudha from "./components/AboutAmritsudha";
 import Achievements from "./components/Achievements";
@@ -19,7 +19,7 @@ import SignUp from "./components/SignUp";
 import axios from "axios";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true); // it is for holding the component while data fetching is on the way
+  let [isLoading, setIsLoading] = useState(true); // it is for holding the component while data fetching is on the way
 
 
   const [conditionalRenderingRoutes, setConditionalRenderingRoutes] = useState(undefined);
@@ -30,12 +30,8 @@ function App() {
   // fetching notices and putting them in a context value 
   const getNotices = async function () {
     if (localStorage.getItem("user")) {
-      await axios.get("/notice/getAll").then(res => {
-        setAllNotices(res.data.notices);
-        setIsLoading(false);
-      }).catch((error) => {
-        console.error('Error fetching data:', error);
-        setIsLoading(false);
+      return await axios.get("/notice/getAll").then(res => {
+        return res.data.notices;
       })
     }
   }
@@ -47,14 +43,11 @@ function App() {
   const [allProgrammes, setAllProgrammes] = useState("");
   // fetching notices and putting them in a context value 
   const getProgrammes = async function () {
-    await axios.get("/program/getAll").then(res => {
-      setAllProgrammes(res.data.programs);
-      setIsLoading(false);
-    }).catch((error) => {
-      console.error('Error fetching data:', error);
-      setIsLoading(false);
-    });
+    return await axios.get("/program/getAll").then(res => {
+      return res.data.programs;
+    })
   }
+
 
 // PROGRAMMES ENDING-------------------------------------------------------------------------------------
 
@@ -63,13 +56,9 @@ function App() {
   const [allImages, setAllImages] = useState("");
   // fetching notices and putting them in a context value 
   const getImages = async function () {
-    await axios.get("/image/getAllImages").then(res => {
-      setAllImages(res.data.images)
-      setIsLoading(false);
-    }).catch((error) => {
-      console.error('Error fetching data:', error);
-      setIsLoading(false);
-    });
+    return await axios.get("/image/getAllImages").then(res => {
+      return res.data.images;
+    })
   }
 
 // PROGRAMMES ENDING-------------------------------------------------------------------------------------
@@ -92,23 +81,29 @@ const fetchUserById = async function() {
     setConditionalRenderingRoutes(undefined);
   }
 }
-
 React.useEffect(() => {
-  getNotices();
-  getProgrammes();
-  getImages();
   fetchUserById();
+   Promise.all([getProgrammes(), getNotices(), getImages()])
+  .then(res => {
+    let [programs, notices, images] = res;
+    setAllProgrammes(programs);
+    setAllNotices(notices);
+    setAllImages(images);
+  })
+  .catch(err => console.error("error in app programmes fetching"));
+
 },[])
 
   return (
+  
     <>
     {
       ( conditionalRenderingRoutes && conditionalRenderingRoutes?.data?.user?.role === "ADMIN") ? 
       <MyContext.Provider value={{
+        isLoading,
         notices : allNotices,
         programmes : allProgrammes,
         images: allImages,
-        isLoading,
         user,
         setUser
       }} >

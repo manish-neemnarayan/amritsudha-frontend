@@ -4,11 +4,8 @@ import MyContext from "../utils/context";
 
 const Aware = function () {
     const [allNotices, setAllNotices] = useState("");
-    // const [awareProgrammes, setAwareProgrammes] = useState([]);
     const [curUser, setCurUser] = useState();
-    const {programmes, isLoading} = useContext(MyContext);
-
-    console.log(programmes)
+    const {programmes} = useContext(MyContext);
 
     // fetch function to get all the notices
     const getNotices = async function () {
@@ -73,13 +70,12 @@ const Aware = function () {
                             <li className="pb-4 text-m w-full font-semibold text-violet-700">
                                 <section className="text-gray-600 body-font overflow-hidden">
                                     <div className="container py-2 mx-auto">
+                                    {
+                                        (!programmes) ? <p>Loading...</p> 
+                                        :   
                                         <div className="-my-8 divide-y-2 divide-gray-100">
-                                           
-                                            
                                             {/* mapping all the programmes fetching from database */}
-                                            {
-                                            (isLoading) ? <div>Loading...</div> 
-                                            :                                            
+                                            {                                         
                                             Array.from(programmes)?.map((program, index) => {
                                                 return <div key={index} className="py-8 flex flex-wrap md:flex-nowrap">
                                                     <div className="md:w-64 w-full md:mb-0 mb-6 flex-shrink-0 flex flex-col">
@@ -93,7 +89,9 @@ const Aware = function () {
                                             })} 
 
                                         </div>
+                                    }
                                     </div>
+                                        
                                 </section>
                             </li>
                         </ul>

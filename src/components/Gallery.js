@@ -3,7 +3,7 @@ import MyContext from "../utils/context";
 
 const Gallery = function() {
 
-    const {images, isLoading} = useContext(MyContext);
+    const {images} = useContext(MyContext);
 
     return(
         <>
@@ -13,13 +13,13 @@ const Gallery = function() {
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Our Enterprise <span className="text-orange-500" >Photos </span> Collection</h1>
               <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom.</p>
             </div>
+            {
+              (!images) ? <p>Loading...</p>
+              :
             <div className="flex justify-center items-center flex-wrap -m-4 md:h-[90vh]">
               {
-              (isLoading) ? <div>Loading...</div>
-              :
               Array.from(images).map((photo, index) => {
                 return (
-                  <>
                     <div key={index} className="lg:w-1/2 sm:w-1/2 p-4">
                       <div className="flex group relative">
                         <img alt="gallery" className="inset-0 w-full h-full object-cover object-center" src={photo.avatar} />
@@ -30,10 +30,10 @@ const Gallery = function() {
                         </div>
                       </div>
                     </div>
-                  </>
                 )
               })}
             </div>
+            }
           </div>
         </section> 
         </>
