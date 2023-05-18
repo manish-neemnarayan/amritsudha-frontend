@@ -83,15 +83,23 @@ const fetchUserById = async function() {
 }
 React.useEffect(() => {
   fetchUserById();
-   Promise.all([getProgrammes(), getNotices(), getImages()])
-  .then(res => {
-    let [programs, notices, images] = res;
-    setAllProgrammes(programs);
-    setAllNotices(notices);
-    setAllImages(images);
-  })
-  .catch(err => console.error("error in app programmes fetching" + err));
+  Promise.resolve(getProgrammes()).
+  then(function programHandler(res) {
+    setAllProgrammes(res);
+  }).catch(err => console.log(err + "err in program handler"))
 
+  Promise.resolve(getImages()).
+  then(function imageHandler(res) {
+    setAllImages(res);
+  }).catch(err => console.log(err + "err in program handler"))
+
+  if (localStorage.getItem("user")) {
+    Promise.resolve(getNotices()).
+    then(function noticeHandler(res) {
+      setAllNotices(res);
+    }).catch(err => console.log(err + "err in program handler"));
+  }
+  
 },[])
 
   return (
