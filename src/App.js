@@ -30,7 +30,11 @@ function App() {
   // fetching notices and putting them in a context value 
   const getNotices = async function () {
     if (localStorage.getItem("user")) {
-      return await axios.get("/notice/getAll").then(res => {
+      return await axios.get("/notice/getAll",{
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*', // Allow requests from all origins
+        }}).then(res => {
         return res.data.notices;
       })
     }
@@ -43,7 +47,11 @@ function App() {
   const [allProgrammes, setAllProgrammes] = useState("");
   // fetching notices and putting them in a context value 
   const getProgrammes = async function () {
-    return await axios.get("/program/getAll").then(res => {
+    return await axios.get("/program/getAll",{
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*', // Allow requests from all origins
+      }}).then(res => {
       return res.data.programs;
     })
   }
@@ -56,7 +64,11 @@ function App() {
   const [allImages, setAllImages] = useState("");
   // fetching notices and putting them in a context value 
   const getImages = async function () {
-    return await axios.get("/image/getAllImages").then(res => {
+    return await axios.get("/image/getAllImages",{
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*', // Allow requests from all origins
+      }}).then(res => {
       return res.data.images;
     })
   }

@@ -28,7 +28,8 @@ const Login = function() {
         const res = await fetch("/auth/login", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*', // Allow requests from all origins
             },
             body: JSON.stringify({
                 email,

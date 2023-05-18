@@ -15,7 +15,12 @@ const SignUp = function() {
             email,
             password,
             role
-        })
+        }, 
+        {
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*', // Allow requests from all origins
+        }})
     }
 
 
