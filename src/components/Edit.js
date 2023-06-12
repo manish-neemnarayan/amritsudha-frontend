@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext} from "react";
 import { useEffect, useState } from 'react';
 import MyContext from "../utils/context";
+import { BACKEND_URL } from "../env";
 
 function EditUserPage() {
     let [userName, setName] = useState();
@@ -19,14 +20,14 @@ function EditUserPage() {
     // for updating the boolean value of edit usestate--------------------------------
     const [post, setPost] = useState([]);
     useEffect(() => {
-        axios.get("auth/getAllUser").then(res => {
+        axios.get(`${BACKEND_URL}auth/getAllUser`).then(res => {
             setPost(res.data.users);
         })
     }, [])
 
     // for updating the value in db-------------------------------------
     const handleUpdate = async (userId) => {
-        await axios.put(`/auth/user/update/${userId}`, {
+        await axios.put(`${BACKEND_URL}/auth/user/update/${userId}`, {
             userName,
             email
         })
@@ -35,7 +36,7 @@ function EditUserPage() {
 
     // for removing user from the db
     const handleDelete = async (userId) => {
-        await axios.delete(`/auth/user/delete/${userId}`).then(res => alert(res.data.message));
+        await axios.delete(`${BACKEND_URL}/auth/user/delete/${userId}`).then(res => alert(res.data.message));
         window.location.reload();
     }
 
@@ -49,7 +50,7 @@ function EditUserPage() {
         
         // for updating the value in db-------------------------------------
         const handleUpdateNotice = async () => {
-            await axios.put(`/notice/create`, {
+            await axios.put(`${BACKEND_URL}/notice/create`, {
                 title: noticeTitle,
                 message: noticeMessage
             })
@@ -59,7 +60,7 @@ function EditUserPage() {
 
         // for removing user from the db
         const handleNoticeDelete = async (noticeId) => {
-            await axios.delete(`/notice/delete/${noticeId}`).then(res => alert(res.data.message));
+            await axios.delete(`${BACKEND_URL}/notice/delete/${noticeId}`).then(res => alert(res.data.message));
             window.location.reload();
         }
     // EDIT NOTICE handling ENDING----------------------------------------------------------------------------------------------------
@@ -69,7 +70,7 @@ function EditUserPage() {
     let [addNoticeMessage, setAddNoticeMessage] = useState();
 
     const handleAddNotice = async function() {
-        await axios.post(`/notice/create`, {
+        await axios.post(`${BACKEND_URL}/notice/create`, {
             title: addNoticeTitle,
             message: addNoticeMessage
         })
@@ -84,7 +85,7 @@ function EditUserPage() {
 
     // for updating the value in db-------------------------------------
     const handleUpdateProgram = async (programId) => {
-        await axios.put(`/program/update/${programId}`, {
+        await axios.put(`${BACKEND_URL}/program/update/${programId}`, {
             title: programTitle,
             message: programMessage
         })
@@ -93,7 +94,7 @@ function EditUserPage() {
 
     // for removing user from the db
     const handleProgramDelete = async (programId) => {
-        await axios.delete(`/program/delete/${programId}`).then(res => alert(res.data.message));
+        await axios.delete(`${BACKEND_URL}/program/delete/${programId}`).then(res => alert(res.data.message));
         window.location.reload();
     }
     // EDIT PROGRAMMES handling ENDING----------------------------------------------------------------------------------------------------
@@ -103,7 +104,7 @@ function EditUserPage() {
     let [addProgramMessage, setAddProgramMessage] = useState();
 
     const handleAddProgram = async function(noticeId) {
-        await axios.post(`program/create`, {
+        await axios.post(`${BACKEND_URL}/program/create`, {
             title: addProgramTitle,
             message: addProgramMessage
         })

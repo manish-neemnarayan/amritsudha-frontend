@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import MyContext from "../utils/context";
+import { BACKEND_URL } from "../env";
 
 function EditGallery() {
 
@@ -19,7 +20,7 @@ function EditGallery() {
         try {
           await axios({
             method: "post",
-            url: "/image/upload",
+            url: `${BACKEND_URL}/image/upload`,
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
           });
@@ -37,7 +38,7 @@ function EditGallery() {
 
     // REMOVE IMAGE STARTING------------------------------------------------------------------------------------------
         async function handlerRemoveImage(imgId) {
-            await axios.delete(`/image/delete/${imgId}`).then(res => alert(res.data.message));
+            await axios.delete(`${BACKEND_URL}/image/delete/${imgId}`).then(res => alert(res.data.message));
             window.location.reload();
         }
     // REMOVE IMAGE ENDING------------------------------------------------------------------------------------------

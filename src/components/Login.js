@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { BACKEND_URL } from "../env";
 
 const Login = function() {
     let [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const Login = function() {
 
     // to logout
     const logout = async function() {
-        await axios.post("/auth/logout");
+        await axios.post(`${BACKEND_URL}/auth/logout`);
     }
 
 
@@ -25,7 +26,7 @@ const Login = function() {
         logout();
         e.preventDefault();
         // fetch method to get data response
-        const res = await fetch("/auth/login", {
+        const res = await fetch(`${BACKEND_URL}/auth/login`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
