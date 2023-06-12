@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import { BACKEND_URL } from "../env";
 
 const SignUp = function() {
 
@@ -11,7 +10,7 @@ const SignUp = function() {
 
     // funtion to post data to my backend
     const handleSignup = async function() {
-        await axios.post(`${BACKEND_URL}/auth/signup`, {
+        await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/auth/signup`, {
             userName,
             email,
             password,

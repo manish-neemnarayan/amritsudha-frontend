@@ -17,9 +17,10 @@ import EditGallery from "./components/EditGallery";
 import MyContext from "./utils/context";
 import SignUp from "./components/SignUp";
 import axios from "axios";
-import { BACKEND_URL } from "./env";
+
 
 function App() {
+  console.log(process.env.REACT_APP_BACKEND_API_URL);
   let [isLoading, setIsLoading] = useState(true); // it is for holding the component while data fetching is on the way
 
 
@@ -31,7 +32,7 @@ function App() {
   // fetching notices and putting them in a context value 
   const getNotices = async function () {
     if (localStorage.getItem("user")) {
-      return await axios.get(`${BACKEND_URL}/notice/getAll`,{
+      return await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/notice/getAll`,{
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*', // Allow requests from all origins
@@ -48,7 +49,7 @@ function App() {
   const [allProgrammes, setAllProgrammes] = useState("");
   // fetching notices and putting them in a context value 
   const getProgrammes = async function () {
-    return await axios.get(`${BACKEND_URL}/program/getAll`,{
+    return await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/program/getAll`,{
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*', // Allow requests from all origins
@@ -65,7 +66,7 @@ function App() {
   const [allImages, setAllImages] = useState("");
   // fetching notices and putting them in a context value 
   const getImages = async function () {
-    return await axios.get(`${BACKEND_URL}/image/getAllImages`,{
+    return await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/image/getAllImages`,{
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*', // Allow requests from all origins
@@ -82,7 +83,7 @@ const [user, setUser] = useState();
 
 const fetchUserById = async function() {
   if (localStorage.getItem("user")) {
-    await axios.get(`${BACKEND_URL}/auth/getUser/${JSON.parse(localStorage.getItem("user"))._id}`)
+    await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/auth/getUser/${JSON.parse(localStorage.getItem("user"))._id}`)
     .then(res => {
       setConditionalRenderingRoutes(res);
       setIsLoading(false);
