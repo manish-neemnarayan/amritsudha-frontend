@@ -16,7 +16,7 @@ const Login = function() {
 
     // to logout
     const logout = async function() {
-        await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/auth/logout`);
+        await axios.post(`https://amritsudha-backend-server123.onrender.com/api/auth/logout`);
     }
 
 
@@ -25,7 +25,7 @@ const Login = function() {
         logout();
         e.preventDefault();
         // fetch method to get data response
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_API_URL}/auth/login`, {
+        const res = await fetch(`https://amritsudha-backend-server123.onrender.com/api/auth/login`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

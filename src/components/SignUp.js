@@ -10,7 +10,7 @@ const SignUp = function() {
 
     // funtion to post data to my backend
     const handleSignup = async function() {
-        await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/auth/signup`, {
+        await axios.post(`https://amritsudha-backend-server123.onrender.com/api/auth/signup`, {
             userName,
             email,
             password,

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import MyContext from "../utils/context";
-import { BACKEND_URL } from "../env";
 
 const Aware = function () {
     const [allNotices, setAllNotices] = useState("");
@@ -11,7 +10,7 @@ const Aware = function () {
     // fetch function to get all the notices
     const getNotices = async function () {
         if (localStorage.getItem("user")) {
-            await axios.get(`${BACKEND_URL}/notice/getAll`).then(res => setAllNotices(res.data.notices));
+            await axios.get(`https://amritsudha-backend-server123.onrender.com/api/notice/getAll`).then(res => setAllNotices(res.data.notices));
         }
     }
 

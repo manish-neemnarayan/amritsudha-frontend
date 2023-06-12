@@ -19,7 +19,7 @@ function EditGallery() {
         try {
           await axios({
             method: "post",
-            url: `${process.env.REACT_APP_BACKEND_API_URL}/image/upload`,
+            url: `https://amritsudha-backend-server123.onrender.com/api/image/upload`,
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
           });
@@ -37,7 +37,7 @@ function EditGallery() {
 
     // REMOVE IMAGE STARTING------------------------------------------------------------------------------------------
         async function handlerRemoveImage(imgId) {
-            await axios.delete(`${process.env.REACT_APP_BACKEND_API_URL}/image/delete/${imgId}`).then(res => alert(res.data.message));
+            await axios.delete(`https://amritsudha-backend-server123.onrender.com/api/image/delete/${imgId}`).then(res => alert(res.data.message));
             window.location.reload();
         }
     // REMOVE IMAGE ENDING------------------------------------------------------------------------------------------

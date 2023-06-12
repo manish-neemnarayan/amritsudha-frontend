@@ -32,7 +32,7 @@ function App() {
   // fetching notices and putting them in a context value 
   const getNotices = async function () {
     if (localStorage.getItem("user")) {
-      return await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/notice/getAll`,{
+      return await axios.get(`https://amritsudha-backend-server123.onrender.com/api/notice/getAll`,{
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*', // Allow requests from all origins
@@ -49,7 +49,7 @@ function App() {
   const [allProgrammes, setAllProgrammes] = useState("");
   // fetching notices and putting them in a context value 
   const getProgrammes = async function () {
-    return await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/program/getAll`,{
+    return await axios.get(`https://amritsudha-backend-server123.onrender.com/api/program/getAll`,{
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*', // Allow requests from all origins
@@ -66,7 +66,7 @@ function App() {
   const [allImages, setAllImages] = useState("");
   // fetching notices and putting them in a context value 
   const getImages = async function () {
-    return await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/image/getAllImages`,{
+    return await axios.get(`https://amritsudha-backend-server123.onrender.com/api/image/getAllImages`,{
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*', // Allow requests from all origins
@@ -83,7 +83,7 @@ const [user, setUser] = useState();
 
 const fetchUserById = async function() {
   if (localStorage.getItem("user")) {
-    await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/auth/getUser/${JSON.parse(localStorage.getItem("user"))._id}`)
+    await axios.get(`https://amritsudha-backend-server123.onrender.com/api/auth/getUser/${JSON.parse(localStorage.getItem("user"))._id}`)
     .then(res => {
       setConditionalRenderingRoutes(res);
       setIsLoading(false);
