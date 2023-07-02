@@ -37,14 +37,14 @@ const Login = function() {
             })
         })
         const data = await res.json();
-        if(data.user !== undefined) {
+        if(data?.user) {
             localStorage.setItem("user", JSON.stringify(data.user));
-        } else if(data.user === undefined) {
+        } else {
             localStorage.setItem("user", JSON.stringify({role : "user"}));
         }
         
         navigate("/");
-        window.location.reload();
+        // window.location.reload();
         setEmail("");
         setPassword("");
 

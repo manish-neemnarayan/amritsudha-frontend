@@ -20,11 +20,10 @@ import axios from "axios";
 
 
 function App() {
-  console.log(process.env.REACT_APP_BACKEND_API_URL);
   let [isLoading, setIsLoading] = useState(true); // it is for holding the component while data fetching is on the way
 
 
-  const [conditionalRenderingRoutes, setConditionalRenderingRoutes] = useState(undefined);
+  const [conditionalRenderingRoutes, setConditionalRenderingRoutes] = useState();
 
 // NOTICES STARTING-------------------------------------------------------------------------------------
   // state for storing value of notices
