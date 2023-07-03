@@ -20,6 +20,7 @@ import axios from "axios";
 
 
 function App() {
+  axios.defaults.withCredentials = true;
   let [isLoading, setIsLoading] = useState(true); // it is for holding the component while data fetching is on the way
 
 
