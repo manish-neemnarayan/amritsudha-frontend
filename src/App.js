@@ -21,6 +21,7 @@ import axios from "axios";
 
 function App() {
   axios.defaults.withCredentials = true;
+  
   let [isLoading, setIsLoading] = useState(true); // it is for holding the component while data fetching is on the way
 
 
@@ -35,7 +36,7 @@ function App() {
       return await axios.get(`https://amritsudha-backend-server123.onrender.com/api/notice/getAll`,{
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*', // Allow requests from all origins
+          'Access-Control-Allow-Origin': '.onrender.com', // Allow requests from all origins
         }}).then(res => {
         return res.data.notices;
       })
@@ -52,7 +53,7 @@ function App() {
     return await axios.get(`https://amritsudha-backend-server123.onrender.com/api/program/getAll`,{
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', // Allow requests from all origins
+        'Access-Control-Allow-Origin': '.onrender.com', // Allow requests from all origins
       }}).then(res => {
       return res.data.programs;
     })
@@ -69,7 +70,7 @@ function App() {
     return await axios.get(`https://amritsudha-backend-server123.onrender.com/api/image/getAllImages`,{
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', // Allow requests from all origins
+        'Access-Control-Allow-Origin': '.onrender.com', // Allow requests from all origins
       }}).then(res => {
       return res.data.images;
     })
@@ -85,7 +86,6 @@ const fetchUserById = async function() {
   if (localStorage.getItem("user")) {
     await axios.get(`https://amritsudha-backend-server123.onrender.com/api/auth/getUser/${JSON.parse(localStorage.getItem("user"))._id}`, {
       withCredentials: true,
-      credentials: 'include',
     })
     .then(res => {
       setConditionalRenderingRoutes(res);
