@@ -36,7 +36,7 @@ function App() {
       return await axios.get(`https://amritsudha-backend-server123.onrender.com/api/notice/getAll`,{
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '.onrender.com', // Allow requests from all origins
+          'Access-Control-Allow-Origin': 'https://amritsudha-backend-server123.onrender.com', // Allow requests from all origins
         }}).then(res => {
         return res.data.notices;
       })
@@ -53,7 +53,7 @@ function App() {
     return await axios.get(`https://amritsudha-backend-server123.onrender.com/api/program/getAll`,{
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '.onrender.com', // Allow requests from all origins
+        'Access-Control-Allow-Origin': 'https://amritsudha-backend-server123.onrender.com', // Allow requests from all origins
       }}).then(res => {
       return res.data.programs;
     })
@@ -70,7 +70,7 @@ function App() {
     return await axios.get(`https://amritsudha-backend-server123.onrender.com/api/image/getAllImages`,{
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '.onrender.com', // Allow requests from all origins
+        'Access-Control-Allow-Origin': 'https://amritsudha-backend-server123.onrender.com', // Allow requests from all origins
       }}).then(res => {
       return res.data.images;
     })

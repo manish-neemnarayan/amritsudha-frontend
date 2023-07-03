@@ -31,7 +31,7 @@ const Login = function() {
           }, {
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '.onrender.com',
+                'Access-Control-Allow-Origin': 'https://amritsudha-backend-server123.onrender.com',
                 'withCredentials': true, // Set as boolean value
             }
           });
