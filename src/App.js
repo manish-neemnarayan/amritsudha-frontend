@@ -82,7 +82,10 @@ const [user, setUser] = useState();
 
 const fetchUserById = async function() {
   if (localStorage.getItem("user")) {
-    await axios.get(`https://amritsudha-backend-server123.onrender.com/api/auth/getUser/${JSON.parse(localStorage.getItem("user"))._id}`)
+    await axios.get(`https://amritsudha-backend-server123.onrender.com/api/auth/getUser/${JSON.parse(localStorage.getItem("user"))._id}`, {
+      withCredentials: true,
+      credentials: 'include',
+    })
     .then(res => {
       setConditionalRenderingRoutes(res);
       setIsLoading(false);
@@ -104,15 +107,14 @@ React.useEffect(() => {
   Promise.resolve(getImages()).
   then(function imageHandler(res) {
     setAllImages(res);
-  }).catch(err => console.log(err + "err in program handler"))
+  }).catch(err => console.log(err + "err in image handler"))
 
   if (localStorage.getItem("user")) {
     Promise.resolve(getNotices()).
     then(function noticeHandler(res) {
       setAllNotices(res);
-    }).catch(err => console.log(err + "err in program handler"));
+    }).catch(err => console.log(err + "err in notice handler"));
   }
-  
 },[])
 
   return (

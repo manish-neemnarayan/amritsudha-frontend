@@ -15,33 +15,35 @@ const Login = function() {
     }
 
     // to logout
-    const logout = async function() {
-        await axios.post(`https://amritsudha-backend-server123.onrender.com/api/auth/logout`);
-    }
+    // const logout = async function() {
+    //     await axios.post(`https://amritsudha-backend-server123.onrender.com/api/auth/logout`);
+    // }
 
 
     // main function to connect with our backend
     const handleSubmit = async (e) => {
-        logout();
+        // logout();
         e.preventDefault();
         // fetch method to get data response
-        const res = await fetch(`https://amritsudha-backend-server123.onrender.com/api/auth/login`, {
-            method: "POST",
+        const res = await axios.post('https://amritsudha-backend-server123.onrender.com/api/auth/login', {
+            email,
+            password
+          }, {
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*', // Allow requests from all origins
-            },
-            body: JSON.stringify({
-                email,
-                password
-            })
-        })
-        const data = await res.json();
+                'Access-Control-Allow-Origin': '.onrender.com',
+                'withCredentials': true, // Set as boolean value
+            }
+          });
+        console.log(res)
+        const data =  res.data;
+        console.log(data)
         if(data?.user) {
             localStorage.setItem("user", JSON.stringify(data.user));
-        } else {
-            localStorage.setItem("user", JSON.stringify({role : "user"}));
-        }
+        } 
+        // else {
+            // localStorage.setItem("user", JSON.stringify({role : "user"}));
+        // }
         
         navigate("/");
         // window.location.reload();

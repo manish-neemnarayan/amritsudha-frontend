@@ -9,9 +9,9 @@ const Aware = function () {
 
     // fetch function to get all the notices
     const getNotices = async function () {
-        if (localStorage.getItem("user")) {
-            await axios.get(`https://amritsudha-backend-server123.onrender.com/api/notice/getAll`).then(res => setAllNotices(res.data.notices));
-        }
+            let res = await axios.get(`https://amritsudha-backend-server123.onrender.com/api/notice/getAll`);
+            setAllNotices(res.data.notices);
+
     }
 
     // fetch function to get all the awareness programmes
@@ -23,7 +23,9 @@ const Aware = function () {
     React.useEffect(() => {
         setCurUser(JSON.parse(localStorage.getItem("user")));
         // getAwareProgrmmes();
-        getNotices();
+        // let res =  axios.get(`https://amritsudha-backend-server123.onrender.com/api/notice/getAll`).then(res => setAllNotices((res.data.notices)));
+        // console.log(res)
+        getNotices()
     }, []);
 
     return (
