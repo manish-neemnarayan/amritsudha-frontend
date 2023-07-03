@@ -17,10 +17,10 @@ import EditGallery from "./components/EditGallery";
 import MyContext from "./utils/context";
 import SignUp from "./components/SignUp";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 
 function App() {
-  axios.defaults.withCredentials = true;
   
   let [isLoading, setIsLoading] = useState(true); // it is for holding the component while data fetching is on the way
 
