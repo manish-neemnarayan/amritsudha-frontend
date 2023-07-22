@@ -15,9 +15,9 @@ const Login = function() {
     }
 
     // to logout
-    // const logout = async function() {
-    //     await axios.post(`https://amritsudha-backend-server123.onrender.com/api/auth/logout`);
-    // }
+    const logout = async function() {
+        await axios.post(`https://amritsudha-backend-server123.onrender.com/api/auth/logout`);
+    }
 
 
     // main function to connect with our backend
@@ -46,7 +46,7 @@ const Login = function() {
         // }
         
         navigate("/");
-        // window.location.reload();
+        window.location.reload();
         setEmail("");
         setPassword("");
 

@@ -116,7 +116,7 @@ React.useEffect(() => {
       setAllNotices(res);
     }).catch(err => console.log(err + "err in notice handler"));
   }
-},[])
+},[allNotices, allProgrammes, allImages, user, isLoading]);
 
   return (
   
