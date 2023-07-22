@@ -46,6 +46,7 @@ const Login = function() {
         // }
         
         navigate("/");
+        logout()
         window.location.reload();
         setEmail("");
         setPassword("");

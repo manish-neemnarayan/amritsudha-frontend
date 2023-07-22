@@ -118,7 +118,7 @@ React.useEffect(() => {
     }).catch(err => console.log(err + "err in notice handler"));
   }
 }
-},[ allNotices, allProgrammes, allImages, user]);
+},[]);
 
   return (
   
