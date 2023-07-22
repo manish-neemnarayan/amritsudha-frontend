@@ -99,6 +99,7 @@ const fetchUserById = async function() {
   }
 }
 React.useEffect(() => {
+  if (localStorage.getItem("user")) {
   fetchUserById();
   Promise.resolve(getProgrammes()).
   then(function programHandler(res) {
@@ -116,7 +117,8 @@ React.useEffect(() => {
       setAllNotices(res);
     }).catch(err => console.log(err + "err in notice handler"));
   }
-},[allNotices, allProgrammes, allImages, user, isLoading]);
+}
+},[ allNotices, allProgrammes, allImages, user]);
 
   return (
   
