@@ -19,7 +19,7 @@ function EditUserPage() {
     // for updating the boolean value of edit usestate--------------------------------
     const [post, setPost] = useState([]);
     useEffect(() => {
-        axios.get(`https://amritsudha-backend-server123.onrender.com/apiauth/getAllUser`).then(res => {
+        axios.get(`https://amritsudha-backend-server123.onrender.com/api/auth/getAllUser`).then(res => {
             setPost(res.data.users);
         })
     }, [post])
