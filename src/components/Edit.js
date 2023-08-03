@@ -22,7 +22,7 @@ function EditUserPage() {
         axios.get(`https://amritsudha-backend-server123.onrender.com/apiauth/getAllUser`).then(res => {
             setPost(res.data.users);
         })
-    }, [])
+    }, [post])
 
     // for updating the value in db-------------------------------------
     const handleUpdate = async (userId) => {
@@ -207,7 +207,7 @@ function EditUserPage() {
                 }
             </div>
 
-            {/* Add Notice **************************************************************/}
+            {/* Add Program **************************************************************/}
             <div className='p-2  w-full'>
                 {/* heading */}
                 <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Add <span className="text-orange-500" > Program </span></h1>
