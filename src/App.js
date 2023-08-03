@@ -27,6 +27,21 @@ function App() {
 
   const [conditionalRenderingRoutes, setConditionalRenderingRoutes] = useState();
 
+
+  // Interceptor for adding the bearer token to the request headers
+  axios.interceptors.request.use(
+    (config) => {
+      const token = localStorage.getItem("user").token; // Replace 'YOUR_BEARER_TOKEN' with the actual token from your storage
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+
 // NOTICES STARTING-------------------------------------------------------------------------------------
   // state for storing value of notices
   const [allNotices, setAllNotices] = useState("");
